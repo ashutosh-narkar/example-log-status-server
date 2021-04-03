@@ -1,0 +1,24 @@
+services:
+  - name: default
+    url: http://localhost:8001
+  - name: bundle_server_local
+    url: http://localhost:8000
+
+status:
+    service: default
+
+bundles:
+   authz:
+    service: bundle_server_local
+    resource: bundle.tar.gz
+    polling:
+      min_delay_seconds: 60
+      max_delay_seconds: 120
+
+decision_logs:
+  service: default
+  reporting:
+    min_delay_seconds: 10
+    max_delay_seconds: 30
+    max_decisions_per_second: 1
+
